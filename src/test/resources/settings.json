@@ -1,0 +1,49 @@
+{
+  "platformName": "android",
+  "isRemote": true,
+  "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub",
+  "screensLocation": "screens",
+  "driverSettings": {
+    "android": {
+      "deviceKey": "Android_Emulator_Pixel_4",
+      "applicationPath": "./src/test/resources/apps/app-debug.apk",
+      "capabilities": {
+        "platformName": "Android",
+        "automationName": "UiAutomator2",
+        "autoGrantPermissions": true,
+        "appWaitActivity": "com.fastaccess.ui.modules.login.chooser.LoginChooserActivity"
+      }
+    }
+  },
+  "localServiceSettings": {
+    "arguments": {
+      "--allow-insecure": "chromedriver_autodownload"
+    },
+    "capabilities": {
+    }
+  },
+  "timeouts": {
+    "timeoutImplicit": 0,
+    "timeoutCondition": 15,
+    "timeoutPollingInterval": 300,
+    "timeoutCommand": 120
+  },
+  "retry": {
+    "number": 2,
+    "pollingInterval": 300
+  },
+  "logger": {
+    "language": "en"
+  },
+  "elementCache": {
+    "isEnabled": true
+  },
+  "touchActions": {
+    "swipe": {
+      "duration": 1,
+      "retries": 5,
+      "verticalOffset": 0.2,
+      "horizontalOffset": 0.5
+    }
+  }
+}

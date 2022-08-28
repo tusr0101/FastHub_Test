@@ -1,0 +1,15 @@
+{
+  "HONOR8X": {
+    "capabilities": {
+      "deviceName": "HONOR8X",
+      "udid": "MUENW19305000207",
+      "systemPort": "8082"
+    }
+  },
+  "Android_Emulator_Pixel_4": {
+    "capabilities": {
+      "deviceName": "Android Emulator",
+      "udid": "emulator-5554"
+    }
+  }
+}
