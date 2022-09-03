@@ -36,5 +36,6 @@ public class LoginTest extends BaseTest{
 
     public void noNeedNow(){
         //AndroidDriver s = (AndroidDriver) AqualityServices.getApplication().getDriver();
+        //TODO: delete this
     }
 }
