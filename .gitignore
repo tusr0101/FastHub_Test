@@ -1,4 +1,5 @@
 /.idea
 /target
+/allure-results
 AndroidTestApp.iml
 *.apk

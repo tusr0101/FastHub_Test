@@ -3,6 +3,7 @@ package screens.login;
 import aquality.appium.mobile.elements.interfaces.IButton;
 import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public abstract class LoginWithTokenScreen extends Screen {
@@ -32,20 +33,21 @@ public abstract class LoginWithTokenScreen extends Screen {
 
     protected abstract By getShowPasswordBtnLoc();
 
+    @Step("Type username=\"{username}\".")
     public LoginWithTokenScreen setUsername(final String username) {
         usernameTxb.sendKeys(username);
         return this;
     }
-
+    @Step("Type password=\"{password}\".")
     public LoginWithTokenScreen setPassword(final String password) {
         passwordTxb.sendKeys(password);
         return this;
     }
-
+    @Step("Tap login button.")
     public void tapLoginWithToken() {
         loginBtn.click();
     }
-
+    @Step("Tap login in browser button.")
     public void tapLoginInBrowser() {
         loginInBrowserBtn.click();
     }
