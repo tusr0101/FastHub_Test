@@ -1,40 +1,54 @@
 package tests;
 
-import aquality.appium.mobile.application.Application;
 import aquality.appium.mobile.application.AqualityServices;
 import aquality.selenium.core.logging.Logger;
-import io.appium.java_client.android.AndroidDriver;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.Filter;
+import org.apache.logging.log4j.core.filter.ThresholdFilter;
+import org.apache.logging.log4j.core.appender.WriterAppender;
+import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import steps.Steps;
+import utils.AttachUtils;
+import utils.DriverUtils;
+
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Method;
 
 public abstract class BaseTest {
 
     protected final Logger logger = AqualityServices.getLogger();
+    protected Writer consoleWriter;
+    protected Appender testAppender;
     //protected ISettingsFile settings = new JsonSettingsFile("settings.json");
 
+    private void setUpMethodAppender(String test_name) {
+        consoleWriter = new StringWriter();
+        testAppender = WriterAppender.newBuilder().setName(test_name)
+                .setTarget(consoleWriter)
+                .setLayout(PatternLayout.newBuilder().withPattern("%d{yyyy-MM-dd HH:mm:ss} %-5p - %m%n").build())
+                .setFilter(ThresholdFilter.createFilter(Level.INFO, Filter.Result.ACCEPT, Filter.Result.DENY))
+                .build();
+        logger.addAppender(testAppender);
+    }
+
     @BeforeMethod(description = "Run application.")
-    protected void setUp(){
-        AqualityServices.getApplication();
+    protected void setUp(Method method){
+        setUpMethodAppender(method.getName());
+        logger.addAppender(testAppender);
+        DriverUtils.getApplication();
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result, ITestContext testContext) {
+    @AfterMethod(description = "Close app. Save attachments.")
+    public void tearDown() {
+
         if (AqualityServices.isApplicationStarted()){
-            if (result.getStatus() == ITestResult.FAILURE) {
-                Steps.saveScreenshot(getAndroidDriver());
-            }
-            getApplication().quit();
+            AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+            DriverUtils.quit();
         }
-    }
-
-    protected Application getApplication(){
-        return AqualityServices.getApplication();
-    }
-
-    protected AndroidDriver getAndroidDriver() {
-        return (AndroidDriver) getApplication().getDriver();
+        AttachUtils.saveTestLogs(consoleWriter.toString());
+        logger.removeAppender(testAppender);
     }
 }

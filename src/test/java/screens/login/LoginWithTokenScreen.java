@@ -5,6 +5,8 @@ import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import utils.AttachUtils;
+import utils.DriverUtils;
 
 public abstract class LoginWithTokenScreen extends Screen {
 
@@ -36,24 +38,30 @@ public abstract class LoginWithTokenScreen extends Screen {
     @Step("Type username=\"{username}\".")
     public LoginWithTokenScreen setUsername(final String username) {
         usernameTxb.sendKeys(username);
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
     @Step("Type password=\"{password}\".")
     public LoginWithTokenScreen setPassword(final String password) {
         passwordTxb.sendKeys(password);
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
     @Step("Tap login button.")
     public void tapLoginWithToken() {
         loginBtn.click();
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
+
     @Step("Tap login in browser button.")
     public void tapLoginInBrowser() {
         loginInBrowserBtn.click();
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
-
-    public boolean isPasswordVisible(){
-        return passwordTxb.getAttribute("password").equals("false");
+    @Step("Check is password hidden.")
+    public boolean isPasswordHidden(){
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        return passwordTxb.getAttribute("password").equals("true");
     }
 
     public boolean isPresented(){
