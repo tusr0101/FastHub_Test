@@ -13,10 +13,10 @@ import screens.toolbar.ToolBar;
 import steps.Checks;
 import steps.CommonSteps;
 
-//@Test(testName = "Login tests", description = "Checking the ability to sing in to the application.")
+@Test(suiteName = "Login tests", description = "Checking the ability to sing in to the application.")
 public class LoginTests extends BaseTest{
 
-    @Test(testName = "Login with access token test.")
+    @Test(description = "Login with access token test.")
     @Severity(SeverityLevel.CRITICAL)
     public void testLoginByAccessToken (){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest{
         Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.realUserName);
     }
 
-    @Test(testName = "Login with access token test._2")
+    @Test(description = "Login with access token test._2")
     @Severity(SeverityLevel.CRITICAL)
     public void testLoginByAccessToken_2 (){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
