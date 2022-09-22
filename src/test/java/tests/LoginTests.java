@@ -13,7 +13,7 @@ import screens.toolbar.ToolBar;
 import steps.Checks;
 import steps.CommonSteps;
 
-@Test(suiteName = "Login tests", description = "Checking the ability to sing in to the application.")
+@Test(testName = "Checking the ability to sing in to the application.")
 public class LoginTests extends BaseTest{
 
     @Test(description = "Login with access token test.")

@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="FastHub_RE" verbose="1">
 
-    <test name="UI Tests" parallel="methods" thread-count="1">
+    <test name="Login tests" parallel="none">
         <classes>
             <class name="tests.LoginTests"/>
         </classes>
