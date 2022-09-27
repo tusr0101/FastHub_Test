@@ -28,18 +28,13 @@ public class LoginTests extends BaseTest{
         Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.realUserName);
     }
 
-    @Test(description = "Login with access token test._2")
+    @Test(description = "Login with browser.")
     @Severity(SeverityLevel.CRITICAL)
-    public void testLoginByAccessToken_2 (){
+    public void testLoginWithBrowserShouldOpenBrowser(){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
-        LoginWithTokenScreen loginScreen = AqualityServices.getScreenFactory().getScreen(LoginWithTokenScreen.class);
-        ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
-        NavigateMenu navigateMenu = AqualityServices.getScreenFactory().getScreen(NavigateMenu.class);
-
-        CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, toolBar, TestData.userName, TestData.accessToken);
-        Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.realUserName);
+        CommonSteps.loginWithBrowser(loginWithScreen);
+        Checks.isBrowserOpenCheck(TestData.browserPackage);
     }
-
 }
 // TODO:
 //  1) сохранять лог файл в tearDown+

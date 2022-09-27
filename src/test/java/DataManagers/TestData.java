@@ -9,5 +9,8 @@ public class TestData {
     public final static String userName = settingsFile.getValue("/userName").toString();
     public final static String realUserName = settingsFile.getValue("/realUserName").toString();
     public final static String accessToken = settingsFile.getValue("/accessToken").toString();
+    public final static String browserPackage = settingsFile.getValue("/browserPackage").toString();
+    public final static int screenRecordingTimeLimit =
+            Integer.parseInt(settingsFile.getValue("/screenRecordingTimeLimit").toString());
 
 }

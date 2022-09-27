@@ -1,5 +1,6 @@
 package tests;
 
+import DataManagers.TestData;
 import aquality.appium.mobile.application.AqualityServices;
 import aquality.selenium.core.logging.Logger;
 import org.apache.logging.log4j.Level;
@@ -16,6 +17,7 @@ import utils.DriverUtils;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 public abstract class BaseTest {
 
@@ -39,16 +41,24 @@ public abstract class BaseTest {
         setUpMethodAppender(method.getName());
         logger.addAppender(testAppender);
         DriverUtils.getApplication();
+        DriverUtils.enableShowTouches();
+        DriverUtils.enableShowCoordinates();
+        DriverUtils.startRecordingScreen(Duration.ofSeconds(TestData.screenRecordingTimeLimit));
     }
 
     @AfterMethod(description = "Close app. Save attachments.")
     public void tearDown() {
-
+        String record = DriverUtils.stopRecordingScreen();
+        String current_package = DriverUtils.getCurrentPackage();
+        if (!current_package.equals(DriverUtils.getTestPackageName())){
+            DriverUtils.terminateApp(current_package);
+            DriverUtils.clearAppData(current_package);
+        }
         if (AqualityServices.isApplicationStarted()){
-            AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
             DriverUtils.quit();
         }
         AttachUtils.saveTestLogs(consoleWriter.toString());
+        AttachUtils.attachScreenRecord(record);
         logger.removeAppender(testAppender);
     }
 }

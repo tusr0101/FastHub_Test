@@ -26,4 +26,9 @@ public class AttachUtils {
     public static String saveTestLogs(String testLogs){
         return testLogs;
     }
+
+    @Attachment(value = "ScreenRecord", type = "video/mp4", fileExtension = ".mp4")
+    public static byte[] attachScreenRecord(String recordBase64) {
+        return Base64.getDecoder().decode(recordBase64.getBytes(StandardCharsets.UTF_8));
+    }
 }

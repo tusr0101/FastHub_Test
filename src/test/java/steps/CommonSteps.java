@@ -23,4 +23,12 @@ public class CommonSteps {
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(toolBar::isPresented),
                 "Login failed. Tool bar is not presented.");
     }
+
+    @Step("Open browser for login.")
+    public static void loginWithBrowser(LoginWithScreen loginWithScreen) {
+        Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(loginWithScreen::isPresented),
+                "Login With Screen is not presented.");
+        loginWithScreen.tapLoginInBrowser();
+    }
+
 }
