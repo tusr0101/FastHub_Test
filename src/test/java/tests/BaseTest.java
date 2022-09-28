@@ -58,7 +58,7 @@ public abstract class BaseTest {
             DriverUtils.quit();
         }
         AttachUtils.saveTestLogs(consoleWriter.toString());
-        AttachUtils.attachScreenRecord(record);
+        AttachUtils.saveScreenRecord(record);
         logger.removeAppender(testAppender);
     }
 }
