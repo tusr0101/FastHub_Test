@@ -11,6 +11,7 @@ import org.apache.logging.log4j.core.appender.WriterAppender;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import steps.CommonSteps;
 import utils.AttachUtils;
 import utils.DriverUtils;
 
@@ -41,6 +42,7 @@ public abstract class BaseTest {
         setUpMethodAppender(method.getName());
         logger.addAppender(testAppender);
         DriverUtils.getApplication();
+        CommonSteps.clearBrowserData(TestData.browserPackage);
         DriverUtils.enableShowTouches();
         DriverUtils.enableShowCoordinates();
         DriverUtils.startRecordingScreen(Duration.ofSeconds(TestData.screenRecordingTimeLimit));
@@ -49,11 +51,8 @@ public abstract class BaseTest {
     @AfterMethod(description = "Close app. Save attachments.")
     public void tearDown() {
         String record = DriverUtils.stopRecordingScreen();
-        String current_package = DriverUtils.getCurrentPackage();
-        if (!current_package.equals(DriverUtils.getTestPackageName())){
-            DriverUtils.terminateApp(current_package);
-            DriverUtils.clearAppData(current_package);
-        }
+        CommonSteps.clearBrowserData(TestData.browserPackage);
+
         if (AqualityServices.isApplicationStarted()){
             DriverUtils.quit();
         }

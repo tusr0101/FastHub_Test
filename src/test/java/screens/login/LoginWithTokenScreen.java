@@ -41,12 +41,14 @@ public abstract class LoginWithTokenScreen extends Screen {
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
+
     @Step("Type password=\"{password}\".")
     public LoginWithTokenScreen setPassword(final String password) {
         passwordTxb.sendKeys(password);
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
+
     @Step("Tap login button.")
     public void tapLoginWithToken() {
         loginBtn.click();

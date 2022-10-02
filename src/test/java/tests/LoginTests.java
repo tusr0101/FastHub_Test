@@ -6,6 +6,9 @@ import aquality.appium.mobile.application.AqualityServices;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
+import screens.chrome.acceptTerms.AcceptTermsChromeScreen;
+import screens.chrome.github.GithubLoginChromeScreen;
+import screens.chrome.sync.SyncChromeScreen;
 import screens.login.LoginWithScreen;
 import screens.login.LoginWithTokenScreen;
 import screens.navigateMenu.NavigateMenu;
@@ -16,7 +19,7 @@ import steps.CommonSteps;
 @Test(testName = "Checking the ability to sing in to the application.")
 public class LoginTests extends BaseTest{
 
-    @Test(description = "Login with access token test.")
+    @Test(description = "01.Login with access token test.")
     @Severity(SeverityLevel.CRITICAL)
     public void testLoginByAccessToken (){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
@@ -25,24 +28,30 @@ public class LoginTests extends BaseTest{
         NavigateMenu navigateMenu = AqualityServices.getScreenFactory().getScreen(NavigateMenu.class);
 
         CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, toolBar, TestData.userName, TestData.accessToken);
-        Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.realUserName);
+        Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.userName);
     }
 
-    @Test(description = "Login with browser.")
+    @Test(description = "02.Login with browser opens browser.")
     @Severity(SeverityLevel.CRITICAL)
     public void testLoginWithBrowserShouldOpenBrowser(){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
-        CommonSteps.loginWithBrowser(loginWithScreen);
+        CommonSteps.openloginWithBrowser(loginWithScreen);
         Checks.isBrowserOpenCheck(TestData.browserPackage);
     }
+
+    @Test(description = "03.Login with browser.")
+    @Severity(SeverityLevel.CRITICAL)
+    public void testLoginWithBrowser(){
+        LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
+        AcceptTermsChromeScreen acceptTermsChromeScreen = AqualityServices.getScreenFactory().getScreen(AcceptTermsChromeScreen.class);
+        SyncChromeScreen syncChromeScreen = AqualityServices.getScreenFactory().getScreen(SyncChromeScreen.class);
+        GithubLoginChromeScreen githubLoginChromeScreen = AqualityServices.getScreenFactory().getScreen(GithubLoginChromeScreen.class);
+        ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
+        NavigateMenu navigateMenu = AqualityServices.getScreenFactory().getScreen(NavigateMenu.class);
+
+        CommonSteps.openloginWithBrowser(loginWithScreen);
+        CommonSteps.loginWithBrowser(acceptTermsChromeScreen, syncChromeScreen, githubLoginChromeScreen,
+                toolBar, TestData.userName, TestData.password);
+        Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.userName);
+    }
 }
-// TODO:
-//  1) сохранять лог файл в tearDown+
-//  1.1) ДОБАВИТЬ ЕЩЕ 1 тест и проверить работу нескольких тестов+
-//  2) перенести проверки в степы+
-//  3) так же в степы вынести CommonSteps типа логина(но в этом тесте мб оставить?)+
-//  4) разобраться почему не ставится описание кейса и имя из метода+
-//  5) скрины для каждого степа?+
-//  6) перенести логгер(аппендер и райтер) в другое место.??
-//  6) создать pipeline в jenkins(заставить работать по автомату: сборка, запуск эмулятора и т.д)
-//  7) реализовать больше тестов
