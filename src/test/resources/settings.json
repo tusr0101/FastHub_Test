@@ -12,7 +12,7 @@
         "automationName": "UiAutomator2",
         "autoGrantPermissions": true,
         "appWaitActivity": "com.fastaccess.ui.modules.login.chooser.LoginChooserActivity",
-        "appium:newCommandTimeout": "3600"
+        "appium:newCommandTimeout": "120"
       }
     }
   },
@@ -25,7 +25,7 @@
   },
   "timeouts": {
     "timeoutImplicit": 0,
-    "timeoutCondition": 15,
+    "timeoutCondition": 10,
     "timeoutPollingInterval": 300,
     "timeoutCommand": 120
   },

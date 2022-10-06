@@ -15,6 +15,7 @@ import screens.navigateMenu.NavigateMenu;
 import screens.toolbar.ToolBar;
 import steps.Checks;
 import steps.CommonSteps;
+import utils.RandomUtils;
 
 @Test(testName = "Checking the ability to sing in to the application.")
 public class LoginTests extends BaseTest{
@@ -27,7 +28,8 @@ public class LoginTests extends BaseTest{
         ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
         NavigateMenu navigateMenu = AqualityServices.getScreenFactory().getScreen(NavigateMenu.class);
 
-        CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, toolBar, TestData.userName, TestData.accessToken);
+        CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, TestData.userName, TestData.accessToken);
+        Checks.LoginCheck(toolBar, true);
         Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.userName);
     }
 
@@ -35,7 +37,7 @@ public class LoginTests extends BaseTest{
     @Severity(SeverityLevel.CRITICAL)
     public void testLoginWithBrowserShouldOpenBrowser(){
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
-        CommonSteps.openloginWithBrowser(loginWithScreen);
+        CommonSteps.openLoginWithBrowser(loginWithScreen);
         Checks.isBrowserOpenCheck(TestData.browserPackage);
     }
 
@@ -49,9 +51,31 @@ public class LoginTests extends BaseTest{
         ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
         NavigateMenu navigateMenu = AqualityServices.getScreenFactory().getScreen(NavigateMenu.class);
 
-        CommonSteps.openloginWithBrowser(loginWithScreen);
+        CommonSteps.openLoginWithBrowser(loginWithScreen);
         CommonSteps.loginWithBrowser(acceptTermsChromeScreen, syncChromeScreen, githubLoginChromeScreen,
-                toolBar, TestData.userName, TestData.password);
+                TestData.userName, TestData.password);
+        Checks.LoginCheck(toolBar, true);
         Checks.isUsernameCorrectCheck(toolBar, navigateMenu, TestData.userName);
+    }
+
+    @Test(description = "04.Show access token function test.")
+    @Severity(SeverityLevel.NORMAL)
+    public void testShowPasswordShouldShowPassword(){
+        LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
+        LoginWithTokenScreen loginScreen = AqualityServices.getScreenFactory().getScreen(LoginWithTokenScreen.class);
+        CommonSteps.typeAndShowAccessToken(loginWithScreen, loginScreen, TestData.accessToken);
+        Checks.isAccessTokenVisibleCheck(loginScreen);
+    }
+
+    @Test(description = "05.Login with invalid access token test.")
+    @Severity(SeverityLevel.NORMAL)
+    public void testLoginWithInvalidCredentialsIsImpossible (){
+        LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
+        LoginWithTokenScreen loginScreen = AqualityServices.getScreenFactory().getScreen(LoginWithTokenScreen.class);
+        ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
+
+        CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, TestData.userName,
+                RandomUtils.getRandomString(TestData.randomTokenLength));
+        Checks.LoginCheck(toolBar, false);
     }
 }

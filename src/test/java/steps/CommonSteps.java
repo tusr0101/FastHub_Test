@@ -1,6 +1,5 @@
 package steps;
 
-import DataManagers.TestData;
 import aquality.appium.mobile.application.AqualityServices;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -9,28 +8,38 @@ import screens.chrome.github.GithubLoginChromeScreen;
 import screens.chrome.sync.SyncChromeScreen;
 import screens.login.LoginWithScreen;
 import screens.login.LoginWithTokenScreen;
-import screens.toolbar.ToolBar;
 import utils.DriverUtils;
 
 public class CommonSteps {
 
     @Step("Login with Access Token.")
     public static void loginWithAccessToken(LoginWithScreen loginWithScreen, LoginWithTokenScreen loginScreen,
-                                            ToolBar toolBar, String userName, String accessToken) {
+                                            String userName, String accessToken) {
+        openLoginWithAccessToken(loginWithScreen, loginScreen);
+        loginScreen.setUsername(userName);
+        loginScreen.setPassword(accessToken);
+        loginScreen.tapLoginWithToken();
+    }
+
+    @Step("Open login with Access Token screen.")
+    public static void openLoginWithAccessToken(LoginWithScreen loginWithScreen, LoginWithTokenScreen loginScreen) {
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(loginWithScreen::isPresented),
                 "Login With Screen is not presented.");
         loginWithScreen.tapAccessToken();
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(loginScreen::isPresented),
                 "Login with Access token Screen is not presented.");
-        loginScreen.setUsername(userName);
+    }
+
+    @Step("Type and show password.")
+    public static void typeAndShowAccessToken(LoginWithScreen loginWithScreen, LoginWithTokenScreen loginScreen,
+                                              String accessToken) {
+        openLoginWithAccessToken(loginWithScreen, loginScreen);
         loginScreen.setPassword(accessToken);
-        loginScreen.tapLoginWithToken();
-        Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(toolBar::isPresented),
-                "Login failed. Tool bar is not presented.");
+        loginScreen.tapShowAccessToken();
     }
 
     @Step("Open browser for login.")
-    public static void openloginWithBrowser(LoginWithScreen loginWithScreen) {
+    public static void openLoginWithBrowser(LoginWithScreen loginWithScreen) {
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(loginWithScreen::isPresented),
                 "Login With Screen is not presented.");
         loginWithScreen.tapLoginInBrowser();
@@ -39,7 +48,7 @@ public class CommonSteps {
     @Step("Login with browser.")
     public static void loginWithBrowser(AcceptTermsChromeScreen acceptTermsChromeScreen,
                                         SyncChromeScreen syncChromeScreen, GithubLoginChromeScreen githubLoginChromeScreen,
-                                        ToolBar toolBar, String userName, String accessToken){
+                                        String userName, String accessToken){
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(acceptTermsChromeScreen::isPresented,
                 "Chrome accept terms is not presented."));
         acceptTermsChromeScreen.tapAcceptTerms();
@@ -51,8 +60,6 @@ public class CommonSteps {
         githubLoginChromeScreen.setUsername(userName);
         githubLoginChromeScreen.setPassword(accessToken);
         githubLoginChromeScreen.tapSignIn();
-        Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(toolBar::isPresented),
-                "Login failed. Tool bar is not presented.");
     }
 
     @Step("Clear {packageName} data. ")

@@ -60,7 +60,14 @@ public abstract class LoginWithTokenScreen extends Screen {
         loginInBrowserBtn.click();
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
-    @Step("Check is password hidden.")
+
+    @Step("Tap show accessToken.")
+    public void tapShowAccessToken() {
+        showPasswordBtn.click();
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+    }
+
+    @Step("Is password hidden.")
     public boolean isPasswordHidden(){
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return passwordTxb.getAttribute("password").equals("true");

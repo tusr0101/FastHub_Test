@@ -12,5 +12,7 @@ public class TestData {
     public final static String browserPackage = settingsFile.getValue("/browserPackage").toString();
     public final static int screenRecordingTimeLimit =
             Integer.parseInt(settingsFile.getValue("/screenRecordingTimeLimit").toString());
+    public final static int randomTokenLength =
+            Integer.parseInt(settingsFile.getValue("/randomTokenLength").toString());
 
 }
