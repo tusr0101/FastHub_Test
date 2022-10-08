@@ -20,9 +20,9 @@ public class Checks {
     }
 
     @Step("Checking login status.")
-    public static void LoginCheck(ToolBar toolBar, boolean excepted_result) {
-        Assert.assertEquals(AqualityServices.getConditionalWait().waitFor(toolBar::isPresented), excepted_result,
-                String.format("Login check failed. excepted = %b", excepted_result));
+    public static void LoginCheck(ToolBar toolBar, boolean exceptedResult) {
+        Assert.assertEquals(AqualityServices.getConditionalWait().waitFor(toolBar::isPresented), exceptedResult,
+                String.format("Login check failed. excepted = %b", exceptedResult));
     }
 
     @Step("Checking access token visibility.")
