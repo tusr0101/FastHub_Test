@@ -15,4 +15,14 @@ public class AndroidNavigateMenu extends NavigateMenu {
     protected By getUserNameTxtLoc() {
         return By.id("navUsername");
     }
+
+    @Override
+    protected By getProfileBtnLoc() {
+        return By.xpath("//android.widget.LinearLayout[contains(@content-desc, \"Profile\")]");
+    }
+
+    @Override
+    protected By getLogoutBtnLoc() {
+        return By.id("logout");
+    }
 }

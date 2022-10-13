@@ -17,6 +17,7 @@ public class DriverUtils {
     public static Application getApplication(){
         return AqualityServices.getApplication();
     }
+
     public static AndroidDriver getAndroidDriver() {
         return (AndroidDriver) AqualityServices.getApplication().getDriver();
     }
@@ -31,6 +32,10 @@ public class DriverUtils {
 
     public static String getCurrentPackage() {
         return getAndroidDriver().getCurrentPackage();
+    }
+
+    public static void activateApp(String packageName) {
+        getAndroidDriver().activateApp(packageName);
     }
 
     public static void terminateApp(String packageName) {

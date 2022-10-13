@@ -8,6 +8,9 @@ import screens.chrome.github.GithubLoginChromeScreen;
 import screens.chrome.sync.SyncChromeScreen;
 import screens.login.LoginWithScreen;
 import screens.login.LoginWithTokenScreen;
+import screens.logout.LogoutScreen;
+import screens.navigateMenu.NavigateMenu;
+import screens.toolbar.ToolBar;
 import utils.DriverUtils;
 
 public class CommonSteps {
@@ -60,6 +63,22 @@ public class CommonSteps {
         githubLoginChromeScreen.setUsername(userName);
         githubLoginChromeScreen.setPassword(accessToken);
         githubLoginChromeScreen.tapSignIn();
+    }
+
+    @Step("Logout from app.")
+    public static void logoutFromApplication(ToolBar toolBar, NavigateMenu navigateMenu, LogoutScreen logoutScreen) {
+        toolBar.tapNavigateUp();
+        navigateMenu.tapProfile();
+        navigateMenu.tapLogout();
+        Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(logoutScreen::isPresented), "Logout screen is not presented.");
+        logoutScreen.tapOk();
+    }
+
+    @Step("Close and open test application.")
+    public static void closeAndOpenTestApp() {
+        String packageName = DriverUtils.getTestPackageName();
+        DriverUtils.terminateApp(packageName);
+        DriverUtils.activateApp(packageName);
     }
 
     @Step("Clear {packageName} data. ")

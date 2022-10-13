@@ -1,5 +1,6 @@
 package screens.login;
 
+import aquality.appium.mobile.application.AqualityServices;
 import aquality.appium.mobile.elements.interfaces.IButton;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
