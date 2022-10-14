@@ -77,7 +77,7 @@ public class CommonSteps {
     @Step("Close and open test application.")
     public static void closeAndOpenTestApp() {
         String packageName = DriverUtils.getTestPackageName();
-        DriverUtils.terminateApp(packageName);
+        DriverUtils.getAndroidDriver().closeApp(); // terminate app throws exception. Test app is not closing.
         DriverUtils.activateApp(packageName);
     }
 

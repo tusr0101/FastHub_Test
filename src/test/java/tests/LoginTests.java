@@ -98,7 +98,7 @@ public class LoginTests extends BaseTest{
                 "Login with screen is not presented after logout.");
     }
 
-    @Test(description = "07.The session is saved after the application is closed.")
+    @Test(description = "07.The session is saved after the application is closed test.")
     @Severity(SeverityLevel.CRITICAL)
     public void testSessionShouldBeSavedAfterClosing () {
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
