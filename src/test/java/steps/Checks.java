@@ -3,10 +3,14 @@ package steps;
 import aquality.appium.mobile.application.AqualityServices;
 import io.qameta.allure.Step;
 import org.testng.Assert;
+import screens.feeds.FeedElement;
+import screens.feeds.FeedsScreen;
 import screens.login.LoginWithTokenScreen;
 import screens.navigateMenu.NavigateMenu;
 import screens.toolbar.ToolBar;
 import utils.DriverUtils;
+
+import java.util.List;
 
 public class Checks {
 
@@ -34,5 +38,11 @@ public class Checks {
     public static void isBrowserOpenCheck(String excepted_package) {
         Assert.assertTrue(AqualityServices.getConditionalWait().waitFor(
                 () -> DriverUtils.getCurrentPackage().equals(excepted_package), "Browser is not open."));
+    }
+
+    @Step("Checking feed is not empty.")
+    public static void feedIsNotEmptyCheck(FeedsScreen feedsScreen) {
+        List<FeedElement> feeds = feedsScreen.getFeeds();
+        Assert.assertFalse(AqualityServices.getConditionalWait().waitFor(()->!feeds.isEmpty()), "Feed is empty.");
     }
 }

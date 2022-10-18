@@ -7,4 +7,9 @@
             <class name="tests.LoginTests"/>
         </classes>
     </test>
+    <test name="Main functions tests" parallel="none">
+        <classes>
+            <class name="tests.FeedsTests"/>
+        </classes>
+    </test>
 </suite>

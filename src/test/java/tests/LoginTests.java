@@ -19,7 +19,7 @@ import steps.Checks;
 import steps.CommonSteps;
 import utils.RandomUtils;
 
-@Test(testName = "Checking the ability to sing in to the application.")
+@Test(testName = "01.Checking the ability to sing in to the application.")
 public class LoginTests extends BaseTest{
 
     @Test(description = "01.Login with access token test.")

@@ -2,6 +2,7 @@ package utils;
 
 import aquality.appium.mobile.application.Application;
 import aquality.appium.mobile.application.AqualityServices;
+import aquality.selenium.core.logging.Logger;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidStartScreenRecordingOptions;
 import org.testng.collections.Lists;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DriverUtils {
+
+    private static final Logger logger = AqualityServices.getLogger();
 
     private DriverUtils() {}
 
@@ -66,11 +69,21 @@ public class DriverUtils {
     public static void startRecordingScreen(Duration duration) {
         AndroidStartScreenRecordingOptions opt = new AndroidStartScreenRecordingOptions();
         opt.withTimeLimit(duration);
-        getAndroidDriver().startRecordingScreen(opt);
+        try {
+            getAndroidDriver().startRecordingScreen(opt);
+        } catch (org.openqa.selenium.WebDriverException e) {
+            logger.warn(String.format("Screen recording is not available. %s", e.getMessage()));
+        }
     }
 
     public static String stopRecordingScreen() {
-        return getAndroidDriver().stopRecordingScreen();
+        try {
+            return getAndroidDriver().stopRecordingScreen();
+        }
+        catch (org.openqa.selenium.WebDriverException e) {
+            logger.warn(String.format("Screen recording is not available. %s", e.getMessage()));
+        }
+        return null;
     }
 
     public static void quit(){

@@ -56,8 +56,10 @@ public abstract class BaseTest {
         if (AqualityServices.isApplicationStarted()){
             DriverUtils.quit();
         }
+        if (record != null) {
+            AttachUtils.saveScreenRecord(record);
+        }
         AttachUtils.saveTestLogs(consoleWriter.toString());
-        AttachUtils.saveScreenRecord(record);
         logger.removeAppender(testAppender);
     }
 }
