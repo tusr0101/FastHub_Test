@@ -25,4 +25,10 @@ public class AndroidToolBar extends ToolBar {
     protected By getSearchBtnLoc() {
         return By.id("search");
     }
+
+    @Override
+    protected By getSearchTxtField() {
+        return By.id("searchEditText");
+    }
+
 }

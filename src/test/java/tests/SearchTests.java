@@ -11,17 +11,18 @@ import screens.toolbar.ToolBar;
 import steps.Checks;
 import steps.CommonSteps;
 
-@Test(testName = "02.Feeds Tests.")
-public class FeedsTests extends BaseTest {
+@Test(testName = "03.Search Tests.")
+public class SearchTests extends BaseTest {
 
-    @Test(description = "01.Feeds should be available test.")
+    @Test(description = "01.Search function test.")
     @Severity(SeverityLevel.CRITICAL)
-    public void testFeedsShouldBeAvailable() {
+    public void testSearchFunction() {
         LoginWithScreen loginWithScreen = AqualityServices.getScreenFactory().getScreen(LoginWithScreen.class);
         LoginWithTokenScreen loginScreen = AqualityServices.getScreenFactory().getScreen(LoginWithTokenScreen.class);
         ToolBar toolBar = AqualityServices.getScreenFactory().getScreen(ToolBar.class);
         CommonSteps.loginWithAccessToken(loginWithScreen, loginScreen, TestData.userName, TestData.accessToken);
         Checks.LoginCheck(toolBar, true);
-        Checks.getRecyclerIsNotEmptyCheck();
+        CommonSteps.searchFor(toolBar, TestData.searchFor);
+        Checks.searchReturnsCorrectResultCheck(TestData.exceptedSearchFor, TestData.searchResultIndex);
     }
 }

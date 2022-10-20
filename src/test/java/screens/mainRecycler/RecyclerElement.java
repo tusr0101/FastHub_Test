@@ -1,4 +1,4 @@
-package screens.feeds;
+package screens.mainRecycler;
 
 import aquality.appium.mobile.elements.Label;
 import aquality.appium.mobile.elements.interfaces.ILabel;
@@ -6,7 +6,7 @@ import aquality.selenium.core.elements.ElementState;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-public class FeedElement extends Label {
+public class RecyclerElement extends Label {
 
     protected By parentLoc;
     private final By titleLoc = By.xpath("//*[contains(@resource-id, 'title')]");
@@ -17,22 +17,22 @@ public class FeedElement extends Label {
     private final ILabel desc =  this.findChildElement(descLoc, ILabel.class);
     private final ILabel avatar =  this.findChildElement(avatarLoc, ILabel.class);
 
-    protected FeedElement(By locator, String name, ElementState state) {
+    protected RecyclerElement(By locator, String name, ElementState state) {
         super(locator, name, state);
         parentLoc = locator;
     }
 
-    @Step("Get Feed title.")
+    @Step("Get Element title.")
     public String getTitle(){
         return title.getAttribute("text");
     }
 
-    @Step("Get Feed text.")
+    @Step("Get Element text.")
     public String getDesc(){
         return desc.getAttribute("text");
     }
 
-    @Step("Get Feed avatar description.")
+    @Step("Get Element avatar description.")
     public String getAvatarDescText(){
         return avatar.getAttribute("content-desc");
     }

@@ -3,8 +3,8 @@ package steps;
 import aquality.appium.mobile.application.AqualityServices;
 import io.qameta.allure.Step;
 import org.testng.Assert;
-import screens.feeds.FeedElement;
-import screens.feeds.FeedsScreen;
+import screens.mainRecycler.RecyclerElement;
+import screens.mainRecycler.MainRecyclerScreen;
 import screens.login.LoginWithTokenScreen;
 import screens.navigateMenu.NavigateMenu;
 import screens.toolbar.ToolBar;
@@ -40,9 +40,18 @@ public class Checks {
                 () -> DriverUtils.getCurrentPackage().equals(excepted_package), "Browser is not open."));
     }
 
-    @Step("Checking feed is not empty.")
-    public static void feedIsNotEmptyCheck(FeedsScreen feedsScreen) {
-        List<FeedElement> feeds = feedsScreen.getFeeds();
-        Assert.assertFalse(AqualityServices.getConditionalWait().waitFor(()->!feeds.isEmpty()), "Feed is empty.");
+    @Step("Checking Main Recycler is not empty.")
+    public static MainRecyclerScreen getRecyclerIsNotEmptyCheck() {
+        Assert.assertFalse(AqualityServices.getConditionalWait().waitFor(
+                ()->AqualityServices.getScreenFactory().getScreen(MainRecyclerScreen.class).getElements().isEmpty()),
+                "Recycler is empty.");
+        return AqualityServices.getScreenFactory().getScreen(MainRecyclerScreen.class);
+    }
+
+    @Step("Checking search results.")
+    public static void searchReturnsCorrectResultCheck(String exceptedSearchFor, int exceptedIndex) {
+        MainRecyclerScreen mainRecyclerScreen = getRecyclerIsNotEmptyCheck();
+        List<RecyclerElement> feeds = mainRecyclerScreen.getElements();
+        Assert.assertEquals(feeds.get(exceptedIndex).getTitle(), exceptedSearchFor, "Search result is not correct.");
     }
 }

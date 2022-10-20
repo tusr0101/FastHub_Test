@@ -1,13 +1,13 @@
-package screens.feeds;
+package screens.mainRecycler;
 
 import aquality.appium.mobile.application.PlatformName;
 import aquality.appium.mobile.screens.screenfactory.ScreenType;
 import org.openqa.selenium.By;
 
 @ScreenType(platform = PlatformName.ANDROID)
-public class AndroidFeedScreen extends FeedsScreen {
+public class AndroidMainRecyclerScreen extends MainRecyclerScreen {
 
-    public AndroidFeedScreen() {
+    public AndroidMainRecyclerScreen() {
         super(By.xpath("//*[contains(@resource-id, 'recycler')]"));
     }
 

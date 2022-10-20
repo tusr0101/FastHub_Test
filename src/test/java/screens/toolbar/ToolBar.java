@@ -1,6 +1,7 @@
 package screens.toolbar;
 
 import aquality.appium.mobile.elements.interfaces.IButton;
+import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,12 +13,14 @@ public abstract class ToolBar extends Screen {
     private final IButton navigateUpBtn;
     private final IButton notificationsBtn;
     private final IButton searchBtn;
+    private final ITextBox searchTxtField;
 
     protected ToolBar(By locator) {
         super(locator, "Toolbar");
         navigateUpBtn = getElementFactory().getButton(getNavigateUpBtnLoc(), "Navigate Up");
         notificationsBtn = getElementFactory().getButton(getNotificationsBtnLoc(), "Notifications");
         searchBtn = getElementFactory().getButton(getSearchBtnLoc(), "Search");
+        searchTxtField = getElementFactory().getTextBox(getSearchTxtField(), "Search field");
     }
 
     protected abstract By getNavigateUpBtnLoc();
@@ -25,6 +28,8 @@ public abstract class ToolBar extends Screen {
     protected abstract By getNotificationsBtnLoc();
 
     protected abstract By getSearchBtnLoc();
+
+    protected abstract By getSearchTxtField();
 
     @Step("Open Navigate menu.")
     public void tapNavigateUp() {
@@ -37,9 +42,16 @@ public abstract class ToolBar extends Screen {
         notificationsBtn.click();
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
-    @Step("Open search.")
+
+    @Step("Tap search.")
     public void tapSearch() {
         searchBtn.click();
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+    }
+
+    @Step("Type text into search field \"{text}\"")
+    public void typeSearch(String text) {
+        searchTxtField.sendKeys(text);
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 

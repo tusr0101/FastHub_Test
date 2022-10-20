@@ -74,6 +74,13 @@ public class CommonSteps {
         logoutScreen.tapOk();
     }
 
+    @Step("Search for \"{searchFor}\"")
+    public static void searchFor(ToolBar toolBar, String searchFor){
+        toolBar.tapSearch();
+        toolBar.typeSearch(searchFor);
+        toolBar.tapSearch();
+    }
+
     @Step("Close and open test application.")
     public static void closeAndOpenTestApp() {
         String packageName = DriverUtils.getTestPackageName();
