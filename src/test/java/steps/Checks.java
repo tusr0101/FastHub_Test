@@ -51,7 +51,16 @@ public class Checks {
     @Step("Checking search results.")
     public static void searchReturnsCorrectResultCheck(String exceptedSearchFor, int exceptedIndex) {
         MainRecyclerScreen mainRecyclerScreen = getRecyclerIsNotEmptyCheck();
-        List<RecyclerElement> feeds = mainRecyclerScreen.getElements();
-        Assert.assertEquals(feeds.get(exceptedIndex).getTitle(), exceptedSearchFor, "Search result is not correct.");
+        List<RecyclerElement> elements = mainRecyclerScreen.getElements();
+        Assert.assertEquals(elements.get(exceptedIndex).getTitle(), exceptedSearchFor, "Search result is not correct.");
+    }
+
+    @Step("Checking list of user repositories.")
+    public static void repositoriesOfUserCheck(String exceptedRepoName, String exceptedRepoAccess, int exceptedIndex) {
+        MainRecyclerScreen mainRecyclerScreen = getRecyclerIsNotEmptyCheck();
+        List<RecyclerElement> elements = mainRecyclerScreen.getElements();
+        String[] title = elements.get(exceptedIndex).getTitle().split("\\s+");
+        Assert.assertEquals(title[1], exceptedRepoName, "Repository name is not correct");
+        Assert.assertEquals(title[2], exceptedRepoAccess, "Repository name is not correct.");
     }
 }

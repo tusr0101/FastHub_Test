@@ -74,11 +74,18 @@ public class CommonSteps {
         logoutScreen.tapOk();
     }
 
-    @Step("Search for \"{searchFor}\"")
+    @Step("Search for \"{searchFor}\".")
     public static void searchFor(ToolBar toolBar, String searchFor){
         toolBar.tapSearch();
         toolBar.typeSearch(searchFor);
         toolBar.tapSearch();
+    }
+
+    @Step("Open repositories.")
+    public static void openRepositories(ToolBar toolBar, NavigateMenu navigateMenu) {
+        toolBar.tapNavigateUp();
+        navigateMenu.tapProfile();
+        navigateMenu.tapRepositories();
     }
 
     @Step("Close and open test application.")
@@ -88,7 +95,7 @@ public class CommonSteps {
         DriverUtils.activateApp(packageName);
     }
 
-    @Step("Clear {packageName} data. ")
+    @Step("Clear {packageName} data.")
     public static void clearBrowserData(String packageName) {
         DriverUtils.terminateApp(packageName);
         DriverUtils.clearAppData(packageName);

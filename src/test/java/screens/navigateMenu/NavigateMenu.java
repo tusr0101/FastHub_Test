@@ -13,12 +13,14 @@ public abstract class NavigateMenu extends Screen {
     private final ITextBox userName;
     private final IButton profileBtn;
     private final IButton logoutBtn;
+    private final IButton reposBtn;
 
     protected NavigateMenu(By locator) {
         super(locator, "Navigate Menu");
         userName = getElementFactory().getTextBox(getUserNameTxtLoc(), "Username");
         profileBtn = getElementFactory().getButton(getProfileBtnLoc(), "ProfileBtn");
         logoutBtn = getElementFactory().getButton(getLogoutBtnLoc(), "LogoutBtn");
+        reposBtn = getElementFactory().getButton(getRepositoriesBtnLoc(), "ReposBtn");
     }
 
     protected abstract By getUserNameTxtLoc();
@@ -26,6 +28,8 @@ public abstract class NavigateMenu extends Screen {
     protected abstract By getProfileBtnLoc();
 
     protected abstract By getLogoutBtnLoc();
+
+    protected abstract By getRepositoriesBtnLoc();
 
     @Step("Get Username")
     public String getUserName(){
@@ -36,6 +40,12 @@ public abstract class NavigateMenu extends Screen {
     @Step("Open profile in navigation menu.")
     public void tapProfile(){
         profileBtn.click();
+        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+    }
+
+    @Step("Open repositories")
+    public void tapRepositories() {
+        reposBtn.click();
         AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 

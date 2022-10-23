@@ -10,6 +10,8 @@
     <test name="Main functions tests" parallel="none">
         <classes>
             <class name="tests.FeedsTests"/>
+            <class name="tests.SearchTests"/>
+            <class name="tests.RepoTests"/>
         </classes>
     </test>
 </suite>

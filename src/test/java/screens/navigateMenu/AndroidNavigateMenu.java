@@ -22,6 +22,11 @@ public class AndroidNavigateMenu extends NavigateMenu {
     }
 
     @Override
+    protected By getRepositoriesBtnLoc() {
+        return By.id("repos");
+    }
+
+    @Override
     protected By getLogoutBtnLoc() {
         return By.id("logout");
     }

@@ -14,6 +14,10 @@ public class TestData {
     public final static String exceptedSearchFor = settingsFile.getValue("/exceptedSearchFor").toString();
     public final static int searchResultIndex =
             Integer.parseInt(settingsFile.getValue("/searchResultIndex").toString());
+    public final static String exceptedRepoName = settingsFile.getValue("/exceptedRepoName").toString();
+    public final static String exceptedRepoAccess = settingsFile.getValue("/exceptedRepoAccess").toString();
+    public final static int repoIndex =
+            Integer.parseInt(settingsFile.getValue("/repoIndex").toString());
 
     public final static int screenRecordingTimeLimit =
             Integer.parseInt(settingsFile.getValue("/screenRecordingTimeLimit").toString());
