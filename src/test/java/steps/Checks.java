@@ -60,7 +60,7 @@ public class Checks {
         MainRecyclerScreen mainRecyclerScreen = getRecyclerIsNotEmptyCheck();
         List<RecyclerElement> elements = mainRecyclerScreen.getElements();
         String[] title = elements.get(exceptedIndex).getTitle().split("\\s+");
-        Assert.assertEquals(title[1], exceptedRepoName, "Repository name is not correct");
-        Assert.assertEquals(title[2], exceptedRepoAccess, "Repository name is not correct.");
+        Assert.assertEquals(title[1], exceptedRepoAccess, "Repository name is not correct.");
+        Assert.assertEquals(title[2], exceptedRepoName, "Repository name is not correct");
     }
 }
