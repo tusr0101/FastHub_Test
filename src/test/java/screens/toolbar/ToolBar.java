@@ -5,7 +5,7 @@ import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 public abstract class ToolBar extends Screen {
@@ -34,25 +34,25 @@ public abstract class ToolBar extends Screen {
     @Step("Open Navigate menu.")
     public void tapNavigateUp() {
         navigateUpBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Open notifications.")
     public void tapNotifications() {
         notificationsBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Tap search.")
     public void tapSearch() {
         searchBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Type text into search field \"{text}\"")
     public void typeSearch(String text) {
         searchTxtField.sendKeys(text);
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     public boolean isPresented(){

@@ -11,8 +11,9 @@ import org.apache.logging.log4j.core.appender.WriterAppender;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import steps.CommonSteps;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 import java.io.StringWriter;
@@ -37,6 +38,11 @@ public abstract class BaseTest {
         logger.addAppender(testAppender);
     }
 
+    @BeforeSuite
+    protected void setUpSuite(){
+        AllureUtils.createEnvironmentProperties();
+    }
+
     @BeforeMethod(description = "Run application.")
     protected void setUp(Method method){
         setUpMethodAppender(method.getName());
@@ -57,9 +63,9 @@ public abstract class BaseTest {
             DriverUtils.quit();
         }
         if (record != null) {
-            AttachUtils.saveScreenRecord(record);
+            AllureUtils.saveScreenRecord(record);
         }
-        AttachUtils.saveTestLogs(consoleWriter.toString());
+        AllureUtils.saveTestLogs(consoleWriter.toString());
         logger.removeAppender(testAppender);
     }
 }

@@ -5,7 +5,7 @@ import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 public abstract class NavigateMenu extends Screen {
@@ -33,26 +33,26 @@ public abstract class NavigateMenu extends Screen {
 
     @Step("Get Username")
     public String getUserName(){
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return userName.getText();
     }
 
     @Step("Open profile in navigation menu.")
     public void tapProfile(){
         profileBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Open repositories")
     public void tapRepositories() {
         reposBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Logout from app.")
     public void tapLogout(){
         logoutBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     public boolean isPresented(){

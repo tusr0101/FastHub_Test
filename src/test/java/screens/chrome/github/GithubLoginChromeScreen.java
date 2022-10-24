@@ -5,7 +5,7 @@ import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 public abstract class GithubLoginChromeScreen extends Screen {
@@ -29,20 +29,20 @@ public abstract class GithubLoginChromeScreen extends Screen {
     @Step("Type username=\"{username}\".")
     public GithubLoginChromeScreen setUsername(final String username) {
         usernameTxb.sendKeys(username);
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
     @Step("Type password=\"{password}\".")
     public GithubLoginChromeScreen setPassword(final String password) {
         passwordTxb.sendKeys(password);
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
 
     @Step("Sign in with Github.")
     public void tapSignIn() {
         signInBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     public boolean isPresented(){

@@ -5,7 +5,7 @@ import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 public abstract class LoginWithTokenScreen extends Screen {
@@ -38,38 +38,38 @@ public abstract class LoginWithTokenScreen extends Screen {
     @Step("Type username=\"{username}\".")
     public LoginWithTokenScreen setUsername(final String username) {
         usernameTxb.sendKeys(username);
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
 
     @Step("Type password=\"{password}\".")
     public LoginWithTokenScreen setPassword(final String password) {
         passwordTxb.sendKeys(password);
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return this;
     }
 
     @Step("Tap login button.")
     public void tapLoginWithToken() {
         loginBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Tap login in browser button.")
     public void tapLoginInBrowser() {
         loginInBrowserBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Tap show accessToken.")
     public void tapShowAccessToken() {
         showPasswordBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     @Step("Is password hidden.")
     public boolean isPasswordHidden(){
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
         return passwordTxb.getAttribute("password").equals("true");
     }
 

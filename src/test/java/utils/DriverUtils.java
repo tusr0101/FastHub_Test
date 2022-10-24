@@ -5,6 +5,7 @@ import aquality.appium.mobile.application.AqualityServices;
 import aquality.selenium.core.logging.Logger;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidStartScreenRecordingOptions;
+import org.openqa.selenium.Capabilities;
 import org.testng.collections.Lists;
 
 import java.time.Duration;
@@ -84,6 +85,10 @@ public class DriverUtils {
             logger.warn(String.format("Screen recording is not available. %s", e.getMessage()));
         }
         return null;
+    }
+
+    public static Capabilities getCapabilities() {
+        return AqualityServices.getApplication().getDriver().getCapabilities();
     }
 
     public static void quit(){

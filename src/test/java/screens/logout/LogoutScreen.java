@@ -4,7 +4,7 @@ import aquality.appium.mobile.elements.interfaces.IButton;
 import aquality.appium.mobile.screens.Screen;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import utils.AttachUtils;
+import utils.AllureUtils;
 import utils.DriverUtils;
 
 public abstract class LogoutScreen extends Screen {
@@ -21,7 +21,7 @@ public abstract class LogoutScreen extends Screen {
     @Step("Confirm logout.")
     public void tapOk() {
         confirmLogoutBtn.click();
-        AttachUtils.saveScreenshot(DriverUtils.getAndroidDriver());
+        AllureUtils.saveScreenshot(DriverUtils.getAndroidDriver());
     }
 
     public boolean isPresented(){
