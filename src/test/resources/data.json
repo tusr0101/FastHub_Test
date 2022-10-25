@@ -1,8 +1,24 @@
 {
-  "userName": "tusr0101",
-  "accessToken": "",
-  "password": "",
-  "browserPackage": "com.android.chrome",
-  "randomTokenLength": "10",
-  "screenRecordingTimeLimit": "30"
+  "secrets": {
+    "userName": "",
+    "password": "",
+    "accessToken": ""
+  },
+  "loginTests": {
+    "browserPackage": "com.android.chrome",
+    "randomTokenLength": "10"
+  },
+  "searchTests": {
+    "searchFor": "linux",
+    "exceptedSearchFor": "torvalds/linux",
+    "searchResultIndex": "0"
+  },
+  "repoTests": {
+    "exceptedRepoName": "FastHub_test",
+    "exceptedRepoAccess": "Private",
+    "repoIndex": "0"
+  },
+  "config": {
+    "screenRecordingTimeLimit": "30"
+  }
 }
