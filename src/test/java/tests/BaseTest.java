@@ -26,7 +26,6 @@ public abstract class BaseTest {
     protected final Logger logger = AqualityServices.getLogger();
     protected Writer consoleWriter;
     protected Appender testAppender;
-    //protected ISettingsFile settings = new JsonSettingsFile("settings.json");
 
     private void setUpMethodAppender(String test_name) {
         consoleWriter = new StringWriter();
