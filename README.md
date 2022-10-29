@@ -1,6 +1,6 @@
-#FastHub_RE_AutoTests
+## FastHub_RE_AutoTests
 
-Реализация автотестов для приложения [FastHub-RE](https://github.com/LightDestory/FastHub-RE).
+Implementation of Autotest for [FastHub-RE](https://github.com/LightDestory/FastHub-RE).
 
 Requirements:
 - Java 11
