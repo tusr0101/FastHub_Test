@@ -14,7 +14,7 @@
     "searchResultIndex": "0"
   },
   "repoTests": {
-    "exceptedRepoName": "FastHub_test",
+    "exceptedRepoName": "FastHub_Test",
     "exceptedRepoAccess": "Private",
     "repoIndex": "0"
   },
