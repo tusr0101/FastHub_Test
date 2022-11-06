@@ -23,3 +23,7 @@ Preparations:
   * 4.2\. Set deviceKey(key from devices.json) in [src/test/resources/settings.json](/src/test/resources/settings.json) file.
 * 5\. Finally, run tests with maven command: `mvn clean test`
 * 6\. After tests, you can generate Allure report: `allure serve`
+
+
+test change 2
+1234
