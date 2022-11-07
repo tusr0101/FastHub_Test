@@ -24,4 +24,4 @@ Preparations:
 * 5\. Finally, run tests with maven command: `mvn clean test`
 * 6\. After tests, you can generate Allure report: `allure serve`
 
-test change
+test change v2
