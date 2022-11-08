@@ -15,7 +15,7 @@
   },
   "repoTests": {
     "exceptedRepoName": "FastHub_Test",
-    "exceptedRepoAccess": "Private",
+    "exceptedRepoAccess": "Public",
     "repoIndex": "0"
   },
   "config": {
